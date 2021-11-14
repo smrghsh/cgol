@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import Experience from '../Experience.js'
 import Environment from './Environment.js'
+import Floor from './Floor.js'
 import Sim from './Sim.js'
 
 export default class World
@@ -12,6 +13,7 @@ export default class World
         this.scene = this.experience.scene
         this.resources = this.experience.resources
         this.sim = new Sim(50,50)
+        this.floor = new Floor()
         // Wait for resources
         this.resources.on('ready', () =>
         {

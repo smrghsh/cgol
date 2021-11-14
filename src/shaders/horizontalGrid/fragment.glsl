@@ -1,7 +1,7 @@
 varying vec3 vPosition;
 
 void main() {
-    vec3 color = vec3(0.0);
+    vec3 color = vec3(1.0);
     // color = color1;
     float thickness = 0.01;
     float opacity = smoothstep(1.0-thickness ,1.0,(vPosition.x - thickness/2.0) - floor(vPosition.x-thickness/2.0));

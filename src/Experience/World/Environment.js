@@ -74,15 +74,7 @@ export default class Environment
         this.environmentMap.intensity = 9.4
         this.environmentMap.texture = this.resources.items.environmentMapTexture
         this.environmentMap.texture.encoding = THREE.sRGBEncoding
-        
         this.scene.environment = this.environmentMap.texture
-
-        // this.ice.color = this.resources.items.iceColorTexture
-        // console.log(this.ice.color)
-        // this.ice.height = this.resources.items.iceHeightTexture
-        // this.ice.normal = this.resources.items.iceNormalTexture
-        // this.ice.ambientOcclusion = this.resources.items.iceAmbientOcclusionTexture
-        // this.ice.metalness = this.resources.items.iceMetalnessTexture
         this.environmentMap.updateMaterials = () =>
         {
             this.scene.traverse((child) =>
@@ -101,7 +93,9 @@ export default class Environment
                     child.material.metalnessMap = this.resources.items.iceMetalnessTexture
                     child.material.roughnessMap = this.resources.items.iceRoughnessTexture
                     child.material.normalMap = this.resources.items.iceNormalTexture
-
+                    child.material.normalScale.set(0.2, 0.2)
+                    // child.material.transparent = true
+                    // child.material.alphaMap = this.resources.items.iceColorTexture
 
                     //fabric texture, unused
                     // child.material.map = this.resources.items.fabricColorTexture
@@ -115,12 +109,7 @@ export default class Environment
                     // child.material.normalMap = this.resources.items.fabricNormalTexture
 
 
-                    child.material.normalScale.set(0.2, 0.2)
-                    // child.material.transparent = true
-                    // child.material.alphaMap = this.resources.items.iceColorTexture
-
-
-
+                    
 
                     child.material.envMapIntensity = this.environmentMap.intensity
                     child.material.needsUpdate = true
