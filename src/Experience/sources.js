@@ -58,6 +58,11 @@ export default [
         name: 'iceRoughnessTexture',
         type: 'texture',
         path: 'textures/ice/Stylized_18_Ice_roughness.jpg'
+    },
+    {
+        name: 'star',
+        type: 'texture',
+        path: 'textures/5.png'
     }
     //fabric remove
     // {
