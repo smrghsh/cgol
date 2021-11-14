@@ -21,27 +21,33 @@ export default class Experience
         instance = this
         // Global access
         window.experience = this
-        
-
         this.canvas = canvas
         this.debug = new Debug()
-        
-
+        this.play = true
+        this.speed = 4
+        if(this.debug.active)
+        {
+            this.debugFolder = this.debug.ui.addFolder('experience')
+            const debugObject = {
+                play: this.play,
+                speed: this.speed
+            }
+            this.debugFolder.add(debugObject, 'play').onChange( value =>{this.play = value})
+            this.debugFolder.add(debugObject, 'speed').min(0.5).max(15).onChange( value =>{this.speed = value})
+            // removed for demo
+            // this.debugFolder.add(debugObject, 'back')
+        }
         this.sizes = new Sizes()
-        this.time = new Time
+        this.time = new Time()
+        this.lastUpdated = this.time.current
         this.scene = new THREE.Scene()
         this.resources = new Resources(sources)
-        // Wait for resources
-        
         this.world = new World()
         this.camera = new Camera()
         this.renderer = new Renderer()
-
-
         this.raycaster = new THREE.Raycaster()
         this.mouse = new THREE.Vector2()
         this.INTERSECTED = null
-
         window.addEventListener('mousemove', (event) =>
         {
             this.mouse.x = event.clientX / this.sizes.width * 2 - 1
@@ -77,31 +83,34 @@ export default class Experience
         this.camera.update()
         this.renderer.update()
         this.world.update()
-
-
         //https://github.com/mrdoob/three.js/blob/master/examples/webgl_interactive_cubes.html
         this.raycaster.setFromCamera( this.mouse, this.camera.instance );
         // console.log(this.mouse)
         const intersects = this.raycaster.intersectObjects( this.world.sim.meshes.children, false );
         if ( intersects.length > 0 ) {
-            
             if ( this.INTERSECTED != intersects[ 0 ].object ) {
-
                 if ( this.INTERSECTED ) this.INTERSECTED.material.color.setHex( this.INTERSECTED.currentHex );
-
                 this.INTERSECTED = intersects[ 0 ].object;
                 this.INTERSECTED.currentHex = this.INTERSECTED.material.color.getHex();
-                
                 this.INTERSECTED.material.color.setHex( 0xff0000 );
 
             }
-
         } else {
 
             if ( this.INTERSECTED ) this.INTERSECTED.material.color.setHex( this.INTERSECTED.currentHex );
 
             this.INTERSECTED = null;
 
+        }
+
+        if (this.play){
+            // console.log(this.play
+            if(this.time.current > (this.lastUpdated + (1000/this.speed))){
+                console.log('stepping')
+                this.world.sim.step()
+                this.world.sim.updateMeshes()
+                this.lastUpdated = this.time.current
+            }
         }
     }
     destroy()

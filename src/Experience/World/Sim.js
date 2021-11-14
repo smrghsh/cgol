@@ -52,7 +52,7 @@ export default class Sim {
         this.past = JSON.parse(JSON.stringify(this.grid))
 
         this.cellGeometry = new THREE.BoxGeometry(this.cellSize,this.cellSize,this.cellSize)
-        this.cellMaterial = new THREE.MeshStandardMaterial({color:'purple'})
+        this.cellMaterial = new THREE.MeshStandardMaterial({color:'blue'})
         this.meshes = new THREE.Group()
         this.grid.forEach((row,r) => {
             row.forEach((col,c) =>{
@@ -69,8 +69,6 @@ export default class Sim {
         this.scene.add(this.meshes)
         console.log(this.meshes)
         this.centerMeshes()
-
-        
     }
 
     randomize(){
@@ -126,7 +124,6 @@ export default class Sim {
     }
     toggleCell(r,c){
         this.grid[r][c] = ! this.grid[r][c]
-        
     }
     
 }
