@@ -58,38 +58,38 @@ export default [
         name: 'iceRoughnessTexture',
         type: 'texture',
         path: 'textures/ice/Stylized_18_Ice_roughness.jpg'
-    },
-    //fabric
-    {
-        name: 'fabricColorTexture',
-        type: 'texture',
-        path: 'textures/fabric/Fabric_Towel_01_basecolor.jpg'
-    },
-    {
-        name: 'fabricHeightTexture',
-        type: 'texture',
-        path: 'textures/fabric/Fabric_Towel_01_height.jpg'
-    },
-    {
-        name: 'fabricNormalTexture',
-        type: 'texture',
-        path: 'textures/fabric/Fabric_Towel_01_normal.jpg'
-    },
-    {
-        name: 'fabricAmbientOcclusionTexture',
-        type: 'texture',
-        path: 'textures/fabric/Fabric_Towel_01_ambientocclusion.jpg'
-    },
-    {
-        name: 'fabricMetalnessTexture',
-        type: 'texture',
-        path: 'textures/fabric/Fabric_Towel_01_metallic.jpg'
-    },
-    {
-        name: 'fabricRoughnessTexture',
-        type: 'texture',
-        path: 'textures/fabric/Fabric_Towel_01_roughness.jpg'
     }
+    //fabric
+    // {
+    //     name: 'fabricColorTexture',
+    //     type: 'texture',
+    //     path: 'textures/fabric/Fabric_Towel_01_basecolor.jpg'
+    // },
+    // {
+    //     name: 'fabricHeightTexture',
+    //     type: 'texture',
+    //     path: 'textures/fabric/Fabric_Towel_01_height.jpg'
+    // },
+    // {
+    //     name: 'fabricNormalTexture',
+    //     type: 'texture',
+    //     path: 'textures/fabric/Fabric_Towel_01_normal.jpg'
+    // },
+    // {
+    //     name: 'fabricAmbientOcclusionTexture',
+    //     type: 'texture',
+    //     path: 'textures/fabric/Fabric_Towel_01_ambientocclusion.jpg'
+    // },
+    // {
+    //     name: 'fabricMetalnessTexture',
+    //     type: 'texture',
+    //     path: 'textures/fabric/Fabric_Towel_01_metallic.jpg'
+    // },
+    // {
+    //     name: 'fabricRoughnessTexture',
+    //     type: 'texture',
+    //     path: 'textures/fabric/Fabric_Towel_01_roughness.jpg'
+    // }
     
 
 ]

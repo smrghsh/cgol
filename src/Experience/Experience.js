@@ -25,6 +25,7 @@ export default class Experience
         this.debug = new Debug()
         this.play = true
         this.speed = 4
+        this.clickSound = new Audio('/sounds/click.wav')
         if(this.debug.active)
         {
             this.debugFolder = this.debug.ui.addFolder('experience')
@@ -59,6 +60,7 @@ export default class Experience
             {
                 this.world.sim.toggleCell(this.INTERSECTED.r,this.INTERSECTED.c)
                 this.world.sim.updateMeshes()
+                this.clickSound.play()
             }
         })
         this.sizes.on('resize', ()=>
