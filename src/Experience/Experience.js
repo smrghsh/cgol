@@ -36,7 +36,25 @@ export default class Experience
         this.world = new World()
         this.camera = new Camera()
         this.renderer = new Renderer()
-        // this.camera.instance.lookAt(0,-10,-10)
+
+
+        this.raycaster = new THREE.Raycaster()
+        this.mouse = new THREE.Vector2()
+        this.INTERSECTED = null
+
+        window.addEventListener('mousemove', (event) =>
+        {
+            this.mouse.x = event.clientX / this.sizes.width * 2 - 1
+            this.mouse.y = - (event.clientY / this.sizes.height) * 2 + 1
+        })
+        window.addEventListener('click', () =>
+        {
+            if(this.INTERSECTED)
+            {
+                this.world.sim.toggleCell(this.INTERSECTED.r,this.INTERSECTED.c)
+                this.world.sim.updateMeshes()
+            }
+        })
         this.sizes.on('resize', ()=>
         {
             this.resize()
@@ -58,7 +76,33 @@ export default class Experience
     {
         this.camera.update()
         this.renderer.update()
-        // this.world.update()
+        this.world.update()
+
+
+        //https://github.com/mrdoob/three.js/blob/master/examples/webgl_interactive_cubes.html
+        this.raycaster.setFromCamera( this.mouse, this.camera.instance );
+        // console.log(this.mouse)
+        const intersects = this.raycaster.intersectObjects( this.world.sim.meshes.children, false );
+        if ( intersects.length > 0 ) {
+            
+            if ( this.INTERSECTED != intersects[ 0 ].object ) {
+
+                if ( this.INTERSECTED ) this.INTERSECTED.material.color.setHex( this.INTERSECTED.currentHex );
+
+                this.INTERSECTED = intersects[ 0 ].object;
+                this.INTERSECTED.currentHex = this.INTERSECTED.material.color.getHex();
+                
+                this.INTERSECTED.material.color.setHex( 0xff0000 );
+
+            }
+
+        } else {
+
+            if ( this.INTERSECTED ) this.INTERSECTED.material.color.setHex( this.INTERSECTED.currentHex );
+
+            this.INTERSECTED = null;
+
+        }
     }
     destroy()
     {

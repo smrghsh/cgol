@@ -26,6 +26,10 @@ export default class Sim {
                     this.step()
                     this.updateMeshes()
                 },
+                clear: () =>{
+                    this.clear()
+                    this.updateMeshes()
+                }
                 // removed for demo
                 // back: () => {
                 //     this.back()
@@ -34,6 +38,7 @@ export default class Sim {
             }
             this.debugFolder.add(debugObject, 'randomize')
             this.debugFolder.add(debugObject, 'step')
+            this.debugFolder.add(debugObject, 'clear')
             // removed for demo
             // this.debugFolder.add(debugObject, 'back')
         }
@@ -43,7 +48,7 @@ export default class Sim {
         //https://stackoverflow.com/questions/18163234/declare-an-empty-two-dimensional-array-in-javascript
         // I fell into a trap here trying to use this
         // this.grid = new Array(rows).fill(new Array(columns).fill(false))
-        this.grid = new Array(rows).fill(0).map(() => new Array(columns).fill(0));
+        this.grid = new Array(rows).fill(0).map(() => new Array(columns).fill(0))
         this.past = JSON.parse(JSON.stringify(this.grid))
 
         this.cellGeometry = new THREE.BoxGeometry(this.cellSize,this.cellSize,this.cellSize)
@@ -64,7 +69,8 @@ export default class Sim {
         this.scene.add(this.meshes)
         console.log(this.meshes)
         this.centerMeshes()
-        // this.step()
+
+        
     }
 
     randomize(){
@@ -114,6 +120,13 @@ export default class Sim {
     back() {
         // this only works once, not using in demo
         this.grid = this.past
+    }
+    clear() {
+        this.grid = new Array(this.rows).fill(0).map(() => new Array(this.columns).fill(0))
+    }
+    toggleCell(r,c){
+        this.grid[r][c] = ! this.grid[r][c]
+        
     }
     
 }

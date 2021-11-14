@@ -8,22 +8,21 @@ export default class World
     constructor()
     {
         this.experience = new Experience()
+        this.sizes = this.experience.sizes
         this.scene = this.experience.scene
         this.resources = this.experience.resources
         this.sim = new Sim(50,50)
-        
         // Wait for resources
         this.resources.on('ready', () =>
         {
             // Setup
             this.environment = new Environment()
         })
-
         this.sim.randomize()
         this.sim.updateMeshes()
-
     }
     update() {
+
         
     }
 }
