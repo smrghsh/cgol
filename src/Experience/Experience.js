@@ -106,7 +106,6 @@ export default class Experience
         if (this.play){
             // console.log(this.play
             if(this.time.current > (this.lastUpdated + (1000/this.speed))){
-                console.log('stepping')
                 this.world.sim.step()
                 this.world.sim.updateMeshes()
                 this.lastUpdated = this.time.current

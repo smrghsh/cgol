@@ -12,6 +12,7 @@ export default class Sim {
 
         this.cellSize = 0.1
         this.cellMarginScalar = 0.90
+        this.cellSubdivision = 1
         
         // Debug
         if(this.debug.active)
@@ -51,8 +52,8 @@ export default class Sim {
         this.grid = new Array(rows).fill(0).map(() => new Array(columns).fill(0))
         this.past = JSON.parse(JSON.stringify(this.grid))
 
-        this.cellGeometry = new THREE.BoxGeometry(this.cellSize,this.cellSize,this.cellSize)
-        this.cellMaterial = new THREE.MeshStandardMaterial({color:'blue'})
+        this.cellGeometry = new THREE.BoxGeometry(this.cellSize,this.cellSize,this.cellSize,this.cellSubdivision,this.cellSubdivision,this.cellSubdivision)
+        this.cellMaterial = new THREE.MeshStandardMaterial()
         this.meshes = new THREE.Group()
         this.grid.forEach((row,r) => {
             row.forEach((col,c) =>{
@@ -67,10 +68,8 @@ export default class Sim {
             })
         })
         this.scene.add(this.meshes)
-        console.log(this.meshes)
         this.centerMeshes()
     }
-
     randomize(){
         this.grid.forEach((row,r) => {
             row.forEach((col,c) =>{

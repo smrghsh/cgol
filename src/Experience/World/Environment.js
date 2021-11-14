@@ -77,13 +77,48 @@ export default class Environment
         
         this.scene.environment = this.environmentMap.texture
 
+        // this.ice.color = this.resources.items.iceColorTexture
+        // console.log(this.ice.color)
+        // this.ice.height = this.resources.items.iceHeightTexture
+        // this.ice.normal = this.resources.items.iceNormalTexture
+        // this.ice.ambientOcclusion = this.resources.items.iceAmbientOcclusionTexture
+        // this.ice.metalness = this.resources.items.iceMetalnessTexture
         this.environmentMap.updateMaterials = () =>
         {
             this.scene.traverse((child) =>
             {
                 if(child instanceof THREE.Mesh && child.material instanceof THREE.MeshStandardMaterial)
                 {
-                    child.material.envMap = this.environmentMap.texture
+                    // console.log(child)
+                    child.geometry.setAttribute('uv2', new THREE.BufferAttribute(child.geometry.attributes.uv.array, 2))
+                    child.material.map = this.resources.items.iceColorTexture
+                    child.material.aoMap = this.resources.items.iceAmbientOcclusionTexture
+                    child.material.aoMapIntensity = 1
+                    child.material.envMap = this.resources.items.iceHeightTexture
+                    // child.material.displacementScale = 0.05
+                    // child.material.displacementMap = this.resources.items.iceHeightTexture
+                    child.material.metalnessMap = this.resources.items.iceMetalnessTexture
+                    child.material.roughnessMap = this.resources.items.iceRoughnessTexture
+                    child.material.normalMap = this.resources.items.iceNormalTexture
+
+                    // child.material.map = this.resources.items.fabricColorTexture
+                    // child.material.aoMap = this.resources.items.fabricAmbientOcclusionTexture
+                    // child.material.aoMapIntensity = 1
+                    // // child.material.envMap = this.resources.items.fabricHeightTexture
+                    // // // child.material.displacementScale = 0.05
+                    // // child.material.displacementMap = this.resources.items.fabricHeightTexture
+                    // child.material.metalnessMap = this.resources.items.fabricMetalnessTexture
+                    // child.material.roughnessMap = this.resources.items.fabricRoughnessTexture
+                    // child.material.normalMap = this.resources.items.fabricNormalTexture
+
+
+                    child.material.normalScale.set(0.2, 0.2)
+                    // child.material.transparent = true
+                    // child.material.alphaMap = this.resources.items.iceColorTexture
+
+
+
+
                     child.material.envMapIntensity = this.environmentMap.intensity
                     child.material.needsUpdate = true
                 }
@@ -92,15 +127,15 @@ export default class Environment
         this.environmentMap.updateMaterials()
 
         // Debug
-        if(this.debug.active)
-        {
-            this.debugFolder
-                .add(this.environmentMap, 'intensity')
-                .name('envMapIntensity')
-                .min(0)
-                .max(4)
-                .step(0.001)
-                .onChange(this.environmentMap.updateMaterials)
-        }
+        // if(this.debug.active)
+        // {
+        //     this.debugFolder
+        //         .add(this.environmentMap, 'intensity')
+        //         .name('envMapIntensity')
+        //         .min(0)
+        //         .max(4)
+        //         .step(0.001)
+        //         .onChange(this.environmentMap.updateMaterials)
+        // }
     }
 }

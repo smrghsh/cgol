@@ -16,6 +16,7 @@ export default class World
         this.resources.on('ready', () =>
         {
             // Setup
+            console.log('resources ready')
             this.environment = new Environment()
         })
         this.sim.randomize()
