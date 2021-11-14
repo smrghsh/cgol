@@ -95,12 +95,15 @@ export default class Environment
                     child.material.aoMap = this.resources.items.iceAmbientOcclusionTexture
                     child.material.aoMapIntensity = 1
                     child.material.envMap = this.resources.items.iceHeightTexture
+                    // displacement didn't work because I toggle wirefames to indicate dead cell state, increased subdivisions made dense wireframes
                     // child.material.displacementScale = 0.05
                     // child.material.displacementMap = this.resources.items.iceHeightTexture
                     child.material.metalnessMap = this.resources.items.iceMetalnessTexture
                     child.material.roughnessMap = this.resources.items.iceRoughnessTexture
                     child.material.normalMap = this.resources.items.iceNormalTexture
 
+
+                    //fabric texture, unused
                     // child.material.map = this.resources.items.fabricColorTexture
                     // child.material.aoMap = this.resources.items.fabricAmbientOcclusionTexture
                     // child.material.aoMapIntensity = 1
