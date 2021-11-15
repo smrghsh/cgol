@@ -1,5 +1,6 @@
 # cgol
 conway's game of life in WebXR
+![Conway's Game of Life](thumbnail.png)
 ## to set up
 `npm install`
 ## to run the development server
