@@ -32,7 +32,7 @@ export default class Camera
     {
         this.controls = new OrbitControls(this.instance, this.canvas)
         this.controls.enableDamping = true
-        this.controls.target = new THREE.Vector3(0, this.sim.rows * this.sim.cellSize/2 , -1)
+        this.controls.target = new THREE.Vector3(0, this.sim.rows * this.sim.cellSize/2 , 0)
     }
     resize()
     {
