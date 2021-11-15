@@ -70,6 +70,8 @@ export default class Resources extends EventEmitter
 
         if(this.loaded === this.toLoad)
         {
+            let loading = document.getElementById('loading')
+            loading.style.display = 'none'
             this.trigger('ready')
         }
     }
