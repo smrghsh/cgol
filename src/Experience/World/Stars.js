@@ -7,7 +7,7 @@ export default class Stars {
         this.scene = this.experience.scene
         this.resources = this.experience.resources
         const particlesGeometry = new THREE.BufferGeometry()
-        const count = 1000
+        const count = 700
         const positions = new Float32Array(count*3)
         const color = new Float32Array(count*3)
 
