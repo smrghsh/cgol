@@ -88,6 +88,7 @@ export default class Sim {
     centerMeshes(){
         this.meshes.position.x -= this.columns * this.cellSize / 2
         this.meshes.position.y += this.cellSize
+        this.meshes.position.z -= 1
     }
     step(){
         // https://www.tkglaser.net/conways-game-of-life-in-3d-using-html-5/

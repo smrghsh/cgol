@@ -13,7 +13,7 @@ export default class World
         this.sizes = this.experience.sizes
         this.scene = this.experience.scene
         this.resources = this.experience.resources
-        this.sim = new Sim(50,50)
+        this.sim = new Sim(35,35)
         this.floor = new Floor()
         // this.stars = new Stars()
         // Wait for resources
