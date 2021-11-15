@@ -8,7 +8,7 @@ import Renderer from './Renderer.js'
 import World from './World/World.js'
 
 import sources from './sources.js'
-
+import { VRButton } from 'three/examples/jsm/webxr/VRButton.js'
 
 let instance = null
 
@@ -74,6 +74,14 @@ export default class Experience
         {
             this.update()
         })
+        
+        this.renderer.instance.xr.enabled = true;
+        document.body.appendChild( VRButton.createButton( this.renderer.instance ) );
+        this.renderer.instance.setAnimationLoop( ()=> {
+            // tick();
+            this.renderer.instance.render( this.scene, this.camera.instance );
+        });
+
     }
 
     resize()
@@ -84,7 +92,7 @@ export default class Experience
     update()
     {
         this.camera.update()
-        this.renderer.update()
+        // this.renderer.update()
         this.world.update()
         //https://github.com/mrdoob/three.js/blob/master/examples/webgl_interactive_cubes.html
         this.raycaster.setFromCamera( this.mouse, this.camera.instance );
